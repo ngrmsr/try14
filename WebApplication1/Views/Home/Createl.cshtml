@@ -1,0 +1,56 @@
+﻿@model WebApplication1.Controllers.Product
+
+@{
+    ViewData["Title"] = "Createl";
+}
+
+<h2>Createl</h2>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Createl">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="amount" class="control-label"></label>
+                <input asp-for="amount" class="form-control" />
+                <span asp-validation-for="amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            @for (int i = 0; i < 3; i++)
+            {
+                <div class="form-group">
+                    <label class="control-label">city</label>
+                    <input name="addresses[@i].city" class="form-control" />
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label">street</label>
+                    <input name="addresses[@i].street" class="form-control" />
+
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
